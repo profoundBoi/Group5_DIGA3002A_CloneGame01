@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65703053402815235}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17303863, y: -0.6600574, z: 0.16013154, w: 0.71326}
+  m_LocalRotation: {x: 0.17303991, y: -0.6600589, z: 0.16013359, w: 0.7132578}
   m_LocalPosition: {x: 3.9880116, y: 2.25, z: -0.30945683}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -74,7 +74,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -799,8 +799,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5745176975390963818}
-  - {fileID: 1200599811258796898}
   - {fileID: 46455422331816356}
+  - {fileID: 1200599811258796898}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5586443588595949413
@@ -892,7 +892,7 @@ GameObject:
   m_Component:
   - component: {fileID: 46455422331816356}
   - component: {fileID: 1105276892927054884}
-  - component: {fileID: 7903368990051307293}
+  - component: {fileID: 7375719635145618663}
   m_Layer: 0
   m_Name: FreeLook Camera
   m_TagString: Untagged
@@ -1023,7 +1023,7 @@ MonoBehaviour:
   - {fileID: 4104299723657816214}
   - {fileID: 4026164273526907551}
   - {fileID: 102854988432745893}
---- !u!114 &7903368990051307293
+--- !u!114 &7375719635145618663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1032,13 +1032,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 6802129293659363131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Script: {fileID: 11500000, guid: fe1b06a984301c54281fdc50ebc310ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerIndex: -1
-  AutoEnableInputs: 1
-  XYAxis: {fileID: -5630151704836100654, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  ZAxis: {fileID: 0}
+  horizontal:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: bcc0ba34-cec0-4956-9758-24bf734c75c1
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  vertical:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f3cb74f7-5916-4440-bfa4-726438519a9d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &7319066922762688544
 GameObject:
   m_ObjectHideFlags: 0
