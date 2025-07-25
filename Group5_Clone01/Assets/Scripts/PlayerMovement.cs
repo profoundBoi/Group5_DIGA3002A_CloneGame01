@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -35,7 +36,9 @@ public class PlayerMovement : MonoBehaviour
     private float jumpForce;
     [SerializeField]
     private Camera playerCamera;
-
+    private bool isGrounded;
+    public float playerHeight;
+    public LayerMask layer;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,15 +49,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        player.FindAction("Jump").started += Jump;
+        player.FindAction("Jump").performed += Jump;
         move = player.FindAction("Move");
         player.Enable();
     }
 
     private void OnDisable()
     {
-        player.FindAction("Jump").started -= Jump;
+        player.FindAction("Jump").performed -= Jump;
         player.Disable();
+    }
+
+    private void Update()
+    {
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, layer);
+
+        print(isGrounded);
     }
 
     private void FixedUpdate()
@@ -108,15 +118,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context)
     {
-        if (IsGrounded())
+        if (isGrounded)
         {
             forceDirection += Vector3.up * jumpForce;
         }
     }
 
-    private bool IsGrounded()
+    /*rivate bool IsGrounded()
     {
         Ray ray = new Ray(transform.position + Vector3.up * 0.25f, Vector3.down);
         return Physics.Raycast(ray, 0.3f);
-    }
+    }*/
 }
