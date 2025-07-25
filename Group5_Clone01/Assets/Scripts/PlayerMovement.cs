@@ -29,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     [Space(5)]
     [SerializeField]
     private float maxSpeed;
+    private bool isSprinting = false;
+    [SerializeField]
+    private float sprintMultiplier;
     private Vector3 forceDirection = Vector3.zero;
     [SerializeField]
     private float moveForce;
@@ -50,28 +53,43 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         player.FindAction("Jump").performed += Jump;
+        player.FindAction("Sprint").performed += Speed;
+        player.FindAction("Sprint").canceled += LimitSpeed;
         move = player.FindAction("Move");
         player.Enable();
+    }
+
+    private void Speed(InputAction.CallbackContext context)
+    {
+        isSprinting = true;
+    }
+
+    private void LimitSpeed(InputAction.CallbackContext context)
+    {
+        isSprinting = false;
     }
 
     private void OnDisable()
     {
         player.FindAction("Jump").performed -= Jump;
+        player.FindAction("Sprint").performed -= ctx => isSprinting = true;
+        player.FindAction("Sprint").canceled -= ctx => isSprinting = false;
         player.Disable();
     }
 
     private void Update()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, layer);
+        
 
-        print(isGrounded);
     }
 
     private void FixedUpdate()
     {
         Vector2 input = move.ReadValue<Vector2>();
+        float currentSpeed = isSprinting ? moveForce * sprintMultiplier : moveForce;
         Vector3 rawMove = input.x * GetCameraRight(playerCamera) + input.y * GetCameraForward(playerCamera);
-        rawMove *= moveForce;
+        rawMove *= currentSpeed;
 
         // Apply force normally
         forceDirection += rawMove;
