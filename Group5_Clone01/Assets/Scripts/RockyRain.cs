@@ -7,6 +7,8 @@ public class RockyRain : MonoBehaviour
     public string playerTag = "Player";     
     public Vector3 triggerRange = new Vector3(3f, 2f, 3f);
     public float fallDelay = 0.5f;
+    public float destroyDelay = 1f;
+    public GameObject ps;
 
     private Rigidbody rb;
     private bool hasFallen = false;
@@ -40,6 +42,14 @@ public class RockyRain : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject)
+        {
+            ps.SetActive(true);
+            Destroy(this.gameObject) ;
+        }
+    }
     void Fall()
     {
         rb.isKinematic = false;
