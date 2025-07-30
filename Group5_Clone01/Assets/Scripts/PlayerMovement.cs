@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         inputAsset = GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
-        tether = GetComponent<TetherManager>(); // ✅ Assign tether
+        tether = GetComponent<TetherManager>(); 
     }
 
     private void OnEnable()
