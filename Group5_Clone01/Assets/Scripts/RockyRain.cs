@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class RockyRain : MonoBehaviour
 {
-    public string playerTag = "Player";     
+    public string playerTag = "Player";
     public Vector3 triggerRange = new Vector3(3f, 2f, 3f);
     public float fallDelay = 0.5f;
     public float destroyDelay = 1f;
 
-
     private Rigidbody rb;
     private bool hasFallen = false;
     private Light warningLight;
+
+    [Header("Break Effect (Parent GameObject)")]
+    public GameObject breakEffectObject; // Assign the "effects" GameObject
+
+    private ParticleSystem breakEffect;
 
     void Start()
     {
@@ -22,6 +26,14 @@ public class RockyRain : MonoBehaviour
         warningLight = GetComponentInChildren<Light>();
         if (warningLight != null)
             warningLight.enabled = false;
+
+        // Get ParticleSystem from child of the breakEffectObject
+        if (breakEffectObject != null)
+            breakEffect = breakEffectObject.GetComponentInChildren<ParticleSystem>();
+
+        // Disable Play On Awake manually in Inspector
+        if (breakEffect != null)
+            breakEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     void Update()
@@ -34,8 +46,10 @@ public class RockyRain : MonoBehaviour
             if (hit.CompareTag(playerTag))
             {
                 hasFallen = true;
+
                 if (warningLight != null)
                     warningLight.enabled = true;
+
                 Invoke(nameof(Fall), fallDelay);
                 break;
             }
@@ -44,12 +58,18 @@ public class RockyRain : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject)
+        if (!hasFallen) return;
+
+        if (breakEffect != null)
         {
-           
-            Destroy(this.gameObject) ;
+            breakEffectObject.transform.SetParent(null); // Detach so it stays in world space
+            breakEffect.Play();
+            Destroy(breakEffect.gameObject, breakEffect.main.duration);
         }
+
+        Destroy(gameObject, destroyDelay);
     }
+
     void Fall()
     {
         rb.isKinematic = false;
