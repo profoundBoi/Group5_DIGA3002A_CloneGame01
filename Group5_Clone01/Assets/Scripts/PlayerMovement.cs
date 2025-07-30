@@ -42,6 +42,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     public float playerHeight;
     public LayerMask layer;
+
+    [Header ("Shooting Mechanic")]
+    public Transform firePoint;
+    public GameObject projectilePrefab;
+    [SerializeField]
+    private float SecondsToDestroy;
+    [SerializeField]
+    private float projectileSpeed;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -53,10 +61,20 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         player.FindAction("Jump").performed += Jump;
+        player.FindAction("Shoot").performed += Shoot;
         player.FindAction("Sprint").performed += Speed;
         player.FindAction("Sprint").canceled += LimitSpeed;
         move = player.FindAction("Move");
         player.Enable();
+    }
+
+    private void Shoot(InputAction.CallbackContext context)
+    {
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        rb.velocity = firePoint.forward * projectileSpeed;
+        Destroy(projectile, SecondsToDestroy);
+        print("Shot Fired");
     }
 
     private void Speed(InputAction.CallbackContext context)
@@ -72,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         player.FindAction("Jump").performed -= Jump;
+        player.FindAction("Shoot").performed -= Shoot;
         player.FindAction("Sprint").performed -= ctx => isSprinting = true;
         player.FindAction("Sprint").canceled -= ctx => isSprinting = false;
         player.Disable();
