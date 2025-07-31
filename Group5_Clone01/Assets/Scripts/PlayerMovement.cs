@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     public float playerHeight;
     public LayerMask layer;
+    private Health healthScript;
 
     [Header ("Shooting Mechanic")]
     public Transform firePoint;
@@ -55,7 +56,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         inputAsset = GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
-        tether = GetComponent<TetherManager>(); 
+        tether = GetComponent<TetherManager>();
+        healthScript = GetComponent<Health>();
     }
 
     private void OnEnable()
@@ -158,6 +160,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             forceDirection += Vector3.up * jumpForce;
+            healthScript.health -= healthScript.damageAmount[0];
         }
     }
 

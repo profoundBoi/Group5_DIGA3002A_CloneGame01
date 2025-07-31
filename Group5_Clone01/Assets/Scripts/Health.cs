@@ -1,28 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] float health = 5f;
+    public float health;
+    [SerializeField] 
+    private float maxHealth = 100f;
+
+    public float[] damageAmount;
+    [SerializeField] Image healthBar;
+
+    private float lerpSpeed;
 
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    private void Start()
     {
-        if (hit.gameObject.CompareTag("Dragonfly"))
+        health = maxHealth;
+        
+    }
+
+    private void Update()
+    {
+        lerpSpeed = 3 * Time.deltaTime;
+        HealthBarFill();
+        HealthColour();
+    }
+
+    
+    private void HealthBarFill()
+    {
+        //healthBar.fillAmount = health / maxHealth;
+        healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health/maxHealth, lerpSpeed);
+    }
+
+    private void HealthColour()
+    {
+        Color healthColur = Color.Lerp(Color.red, Color.green, (health / maxHealth));
+        healthBar.color = healthColur;
+    }
+
+    private void OnCollisionEnter(Collision coli)
+    {
+        if (coli.gameObject.CompareTag("Dragonfly"))
         {
-            health--;
-        }
-        else if (hit.gameObject.CompareTag("Snake"))
-        {
-            health--;
-        }
-        else if (hit.gameObject.CompareTag("Rock"))
-        {
-            health--;
+            //damageAmount[0] will be the health that the dragon fly deals
+            health -= damageAmount[0];
         }
 
-        
+        if (coli.gameObject.CompareTag("Rock"))
+        {
+            //damageAmount[1] will be the health that the rock deals
+            health -= damageAmount[1];
+        }
+
+        if (coli.gameObject.CompareTag("Snake"))
+        {
+            //damageAmount[2] will be the health that the snake deals
+            health -= damageAmount[2];
+        }
     }
 
     
