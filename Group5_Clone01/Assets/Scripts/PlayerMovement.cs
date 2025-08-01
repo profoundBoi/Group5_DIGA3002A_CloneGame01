@@ -16,8 +16,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Input Fields")]
     [Space(5)]
-    //private InputActions playerInput;
-
     private InputActionAsset inputAsset;
     private InputActionMap player;
     private InputAction move;
@@ -35,14 +33,17 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 forceDirection = Vector3.zero;
     [SerializeField]
     private float moveForce;
+
     [SerializeField]
     private float jumpForce;
+    /*[SerializeField]
+    private Animator animator;*/
+
     [SerializeField]
     private Camera playerCamera;
     private bool isGrounded;
     public float playerHeight;
     public LayerMask layer;
-    private Health healthScript;
 
     [Header ("Shooting Mechanic")]
     public Transform firePoint;
@@ -54,10 +55,11 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        //animator = GetComponent<Animator>();
         inputAsset = GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
         tether = GetComponent<TetherManager>();
-        healthScript = GetComponent<Health>();
+        
     }
 
     private void OnEnable()
@@ -159,14 +161,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded)
         {
-            forceDirection += Vector3.up * jumpForce;
-            healthScript.health -= healthScript.damageAmount[0];
+            //forceDirection += Vector3.up * jumpForce;
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+           
+            /* animation code
+            animator.SetTrigger("jumping");*/
         }
     }
 
-    /*rivate bool IsGrounded()
-    {
-        Ray ray = new Ray(transform.position + Vector3.up * 0.25f, Vector3.down);
-        return Physics.Raycast(ray, 0.3f);
-    }*/
+    
 }
