@@ -5,7 +5,7 @@ public class Checkpoint : MonoBehaviour
 {
     private Collider checkpointColi;
     private HashSet<GameObject> playersInside = new HashSet<GameObject>();
-    //private int totalPlayers = 2; 
+    private int totalPlayers = 2; 
 
     void Awake()
     {
