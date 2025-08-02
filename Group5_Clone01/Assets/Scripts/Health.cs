@@ -24,6 +24,11 @@ public class Health : MonoBehaviour
     private void Update()
     {
         lerpSpeed = 3 * Time.deltaTime;
+
+        if(health <= 0)
+        {
+            GameRespawnManager.Instance.RespawnAllPlayers();
+        }
         HealthBarFill();
         HealthColour();
     }
