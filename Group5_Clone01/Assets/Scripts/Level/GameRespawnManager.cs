@@ -32,21 +32,23 @@ public class GameRespawnManager : MonoBehaviour
         Debug.Log("Shared checkpoint updated to: " + lastPosition);
     }
 
-    /*public void RespawnAllPlayers()
+    public void RespawnAllPlayers()
     {
         foreach (var player in players)
         {
             player.transform.position = currentRespawnPoint; 
             Rigidbody rb = player.GetComponent<Rigidbody>();
             rb.velocity = Vector3.zero;
+            Health health = player.GetComponent<Health>();
+            health.health = health.maxHealth;
 
           
         }
 
         Debug.Log("All players respawned.");
     }
-    */
-    public void RespawnAllPlayers()
+    
+    /*public void RespawnAllPlayers()
     {
         float spacing = 2f; // How far apart each player should be
         int playerCount = players.Count;
@@ -70,6 +72,7 @@ public class GameRespawnManager : MonoBehaviour
 
         Debug.Log("All players respawned side by side.");
     }
+    */
 
 
 

@@ -2029,12 +2029,12 @@ GameObject:
   - component: {fileID: 391543543}
   - component: {fileID: 391543542}
   m_Layer: 0
-  m_Name: Checkpoint Placeholder (1)
+  m_Name: Checkpoint Test2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &391543542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2127,7 +2127,7 @@ Transform:
   m_GameObject: {fileID: 391543541}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9999999, y: 3.69, z: -7.5}
+  m_LocalPosition: {x: 0, y: 2.05, z: -2.6}
   m_LocalScale: {x: 30, y: 3.28202, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2837,7 +2837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &587703570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8371,7 +8371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1713082203
 MonoBehaviour:
   m_ObjectHideFlags: 0
