@@ -10,6 +10,10 @@ public class Health : MonoBehaviour
 
     public float[] damageAmount;
     [SerializeField] Image healthBar;
+    [SerializeField] Image heart;
+
+    public Color fullHealthColour;
+    public Color lowHealthColour;
 
     private float lerpSpeed;
 
@@ -41,8 +45,10 @@ public class Health : MonoBehaviour
 
     private void HealthColour()
     {
-        Color healthColur = Color.Lerp(Color.red, Color.green, (health / maxHealth));
+        //Color healthColur = Color.Lerp(Color.red, Color.green, (health / maxHealth));
+        Color healthColur = Color.Lerp(lowHealthColour, fullHealthColour, (health / maxHealth));
         healthBar.color = healthColur;
+        heart.color = healthColur;
     }
 
     private void OnCollisionEnter(Collision coli)
