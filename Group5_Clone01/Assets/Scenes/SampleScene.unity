@@ -7335,10 +7335,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jem_20
       objectReference: {fileID: 0}
+    - target: {fileID: 6938428929281397091, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5693509664148073543, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 848962573}
   m_SourcePrefab: {fileID: 100100000, guid: fb52dafb78ae3934caa33d923e097121, type: 3}
 --- !u!4 &451804574 stripped
 Transform:
@@ -12932,6 +12941,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1432369204}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &791812064 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5083626120986453650, guid: 2cc84fed45a488e469bdfa833b28a36f,
+    type: 3}
+  m_PrefabInstance: {fileID: 317587173}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &794375783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7964179746223716143, guid: 8a0c20969ef868e4d9c7b04d079e6611,
@@ -13836,6 +13851,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97b9434edc2485440beef4500b4cf95f, type: 3}
+--- !u!1 &848962568 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693509664148073543, guid: fb52dafb78ae3934caa33d923e097121,
+    type: 3}
+  m_PrefabInstance: {fileID: 449970353}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &848962573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848962568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7950218341dce6544b4cbfcd1de9c996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformToRaise: {fileID: 791812064}
+  raiseHeight: 2
+  raiseSpeed: 2
+  holdTime: 2
 --- !u!4 &849243619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4393243371857584627, guid: 5058420d97eab5b4bbeb3541905be3e8,
