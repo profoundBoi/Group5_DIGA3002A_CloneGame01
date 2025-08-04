@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private Camera playerCamera;
-    private bool isGrounded;
+    public bool isGrounded;
     public float playerHeight;
     public LayerMask layer;
 
