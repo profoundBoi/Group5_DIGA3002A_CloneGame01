@@ -43,8 +43,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private float jumpForce;
-    /*[SerializeField]
-    private Animator animator;*/
+    [SerializeField]
+    private Animator animator;
 
     [SerializeField]
     private Camera playerCamera;
@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         inputAsset = GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
         tether = GetComponent<TetherManager>();
@@ -179,8 +179,8 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
            
-            /* animation code
-            animator.SetTrigger("jumping");*/
+            
+            animator.SetTrigger("jumping");
         }
     }
 
