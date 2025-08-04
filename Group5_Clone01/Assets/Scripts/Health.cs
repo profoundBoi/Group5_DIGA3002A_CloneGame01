@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Health : MonoBehaviour
 {
     public float health;
@@ -69,6 +70,7 @@ public class Health : MonoBehaviour
         {
             //damageAmount[2] will be the health that the snake deals
             health -= damageAmount[2];
+            
         }
     }
 
