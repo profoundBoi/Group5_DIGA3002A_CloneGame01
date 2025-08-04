@@ -34,6 +34,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float moveForce;
 
+    [Header("Slope Handling")]
+    [Space(5)]
+
+    private RaycastHit slopeHit;
+    public float maxSlopeAngle;
+
+
     [SerializeField]
     private float jumpForce;
     /*[SerializeField]
@@ -119,6 +126,11 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
 
+        if (OnSlope())
+        {
+            rb.AddForce(GetSlopeDirection() * currentSpeed * 20, ForceMode.Impulse);
+        }
+
         // Extra gravity
         if (rb.velocity.y < 0f)
             rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
@@ -130,6 +142,8 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
 
         LookAt();
+
+        rb.useGravity = !OnSlope();
     }
 
     private void LookAt()
@@ -168,6 +182,22 @@ public class PlayerMovement : MonoBehaviour
             /* animation code
             animator.SetTrigger("jumping");*/
         }
+    }
+
+    private bool OnSlope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+
+        return false;
+    }
+
+    private Vector3 GetSlopeDirection()
+    {
+        return Vector3.ProjectOnPlane(forceDirection, slopeHit.normal).normalized;
     }
 
     

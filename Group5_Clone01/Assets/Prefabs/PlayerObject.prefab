@@ -854,6 +854,7 @@ MonoBehaviour:
   maxSpeed: 5
   sprintMultiplier: 3
   moveForce: 1
+  maxSlopeAngle: 45
   jumpForce: 8
   playerCamera: {fileID: 1746570191836664818}
   playerHeight: 2
