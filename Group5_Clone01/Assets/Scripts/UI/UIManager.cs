@@ -12,13 +12,9 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Elements")]
     [Space(5)]
-    public GameObject menuUI;
+    public GameObject controlUIPanel;
+    public GameObject[] menuUIElements;
 
-
-    [Header("Level UI Elements")]
-    [Space(5)]
-
-    public GameObject levelPanel;
     private void Start()
     {
        
@@ -43,15 +39,22 @@ public class UIManager : MonoBehaviour
 
         if (toggle == false)
         {
-            menuUI.SetActive(false);
+            controlUIPanel.SetActive(false);
+            foreach(GameObject elem in menuUIElements)
+            {
+                elem.SetActive(true);
+            }
             
 
         }
 
         if (toggle)
         {
-            menuUI.SetActive(true);
-            
+            controlUIPanel.SetActive(true);
+            foreach (GameObject elem in menuUIElements)
+            {
+                elem.SetActive(false);
+            }
 
 
         }
