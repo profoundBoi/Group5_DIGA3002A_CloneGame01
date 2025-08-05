@@ -8,6 +8,7 @@ TagManager:
   - Rock
   - Snake
   - KillZone
+  - Crab
   layers:
   - Default
   - TransparentFX
