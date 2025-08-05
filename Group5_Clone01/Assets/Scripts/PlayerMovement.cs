@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
+
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
-using static UnityEditor.Experimental.GraphView.GraphView;
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -33,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 forceDirection = Vector3.zero;
     [SerializeField]
     private float moveForce;
+    [SerializeField]
+    private float rotationSpeed = 5f;
 
     [Header("Slope Handling")]
     [Space(5)]
@@ -48,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private Camera playerCamera;
+    [SerializeField]
+    private Transform cameraTransform;
     public bool isGrounded;
     public float playerHeight;
     public LayerMask layer;
@@ -55,10 +58,9 @@ public class PlayerMovement : MonoBehaviour
     [Header ("Shooting Mechanic")]
     public Transform firePoint;
     public GameObject projectilePrefab;
+    public float bulletHitMiss = 25f;
     [SerializeField]
-    private float SecondsToDestroy;
-    [SerializeField]
-    private float projectileSpeed;
+    private Transform bulletParent;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -66,7 +68,8 @@ public class PlayerMovement : MonoBehaviour
         inputAsset = GetComponent<PlayerInput>().actions;
         player = inputAsset.FindActionMap("Player");
         tether = GetComponent<TetherManager>();
-        
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     private void OnEnable()
@@ -81,11 +84,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Shoot(InputAction.CallbackContext context)
     {
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        rb.velocity = firePoint.forward * projectileSpeed;
-        Destroy(projectile, SecondsToDestroy);
-        print("Shot Fired");
+        RaycastHit hit;
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        BulletControl bulletControl = projectile.GetComponent<BulletControl>();
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity))
+        {
+            
+            bulletControl.target = hit.point;
+            bulletControl.hit = true;
+           
+        }
+        else
+        {
+            bulletControl.target = cameraTransform.position + cameraTransform.forward * bulletHitMiss;
+            bulletControl.hit = false;
+        }
     }
 
     private void Speed(InputAction.CallbackContext context)
@@ -110,6 +123,9 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, layer);
+
+        Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         
 
     }
