@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 6034908782610076959}
   m_Layer: 0
   m_Name: RockyRain
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  triggerRange: {x: 9, y: 31.6, z: 9}
+  triggerRange: {x: 4.59, y: 32.8, z: 4.38}
   fallDelay: 0.5
   destroyDelay: 0.01
   breakEffectObject: {fileID: 3457752275881677303}

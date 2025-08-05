@@ -1677,6 +1677,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockyRain (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4933495838776291242, guid: b5f71c46fe087324cac462dcea498767,
+        type: 3}
+      propertyPath: m_TagString
+      value: Rock
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3023,7 +3028,7 @@ GameObject:
   - component: {fileID: 112128268}
   m_Layer: 0
   m_Name: Bee (2)
-  m_TagString: Untagged
+  m_TagString: Dragonfly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10869,7 +10874,7 @@ GameObject:
   - component: {fileID: 534151152}
   m_Layer: 0
   m_Name: spinningObj (2)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11575,7 +11580,7 @@ GameObject:
   - component: {fileID: 554345214}
   m_Layer: 0
   m_Name: spinningObj (3)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13778,7 +13783,7 @@ GameObject:
   - component: {fileID: 631370785}
   m_Layer: 0
   m_Name: Bee (3)
-  m_TagString: Untagged
+  m_TagString: Dragonfly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13792,7 +13797,7 @@ Transform:
   m_GameObject: {fileID: 631370783}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -105.4, y: 11.39, z: -118.4}
+  m_LocalPosition: {x: -110.7, y: 11.39, z: -120.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14280,7 +14285,7 @@ GameObject:
   - component: {fileID: 640441217}
   m_Layer: 0
   m_Name: spinningObj (12)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14757,7 +14762,7 @@ GameObject:
   - component: {fileID: 677865136}
   m_Layer: 0
   m_Name: spinningObj (6)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14941,6 +14946,120 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a0c20969ef868e4d9c7b04d079e6611, type: 3}
+--- !u!1001 &681234985
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4920385398481155837, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.7365
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920385398481155837, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.7365
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920385398481155837, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.7365
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920385398481155837, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -54.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920385398481155837, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920385398481155837, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -79.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920385398481155837, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920385398481155837, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920385398481155837, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920385398481155837, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920385398481155837, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920385398481155837, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920385398481155837, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693509664148073543, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_Name
+      value: Jem_20 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938428929281397091, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5693509664148073543, guid: fb52dafb78ae3934caa33d923e097121,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 681234987}
+  m_SourcePrefab: {fileID: 100100000, guid: fb52dafb78ae3934caa33d923e097121, type: 3}
+--- !u!1 &681234986 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693509664148073543, guid: fb52dafb78ae3934caa33d923e097121,
+    type: 3}
+  m_PrefabInstance: {fileID: 681234985}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &681234987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681234986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7950218341dce6544b4cbfcd1de9c996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformToRaise: {fileID: 791812064}
+  raiseHeight: 2
+  raiseSpeed: 2
+  holdTime: 2
 --- !u!1001 &687915184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15622,7 +15741,7 @@ GameObject:
   - component: {fileID: 720534599}
   m_Layer: 0
   m_Name: spinningObj (11)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19988,7 +20107,7 @@ GameObject:
   - component: {fileID: 926935132}
   m_Layer: 0
   m_Name: spinningObj (13)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22904,7 +23023,7 @@ GameObject:
   - component: {fileID: 1067859050}
   m_Layer: 0
   m_Name: spinningObj (17)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23126,7 +23245,7 @@ GameObject:
   - component: {fileID: 1079268352}
   m_Layer: 0
   m_Name: spinningObj (8)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25850,7 +25969,7 @@ GameObject:
   - component: {fileID: 1213533073}
   m_Layer: 0
   m_Name: spinningObj (1)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26627,7 +26746,7 @@ GameObject:
   - component: {fileID: 1272035733}
   m_Layer: 0
   m_Name: spinningObj (10)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29881,7 +30000,7 @@ GameObject:
   - component: {fileID: 1435933367}
   m_Layer: 0
   m_Name: spinningObj (16)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32509,7 +32628,7 @@ GameObject:
   - component: {fileID: 1567983429}
   m_Layer: 0
   m_Name: spinningObj
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33301,7 +33420,7 @@ GameObject:
   - component: {fileID: 1613726082}
   m_Layer: 0
   m_Name: spinningObj (5)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37302,7 +37421,7 @@ GameObject:
   - component: {fileID: 1837165396}
   m_Layer: 0
   m_Name: spinningObj (9)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38878,7 +38997,7 @@ GameObject:
   - component: {fileID: 1921675524}
   m_Layer: 0
   m_Name: Bee (1)
-  m_TagString: Untagged
+  m_TagString: Dragonfly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39461,7 +39580,7 @@ GameObject:
   - component: {fileID: 1937860489}
   m_Layer: 0
   m_Name: Bee
-  m_TagString: Untagged
+  m_TagString: Dragonfly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41379,21 +41498,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 29.725
       objectReference: {fileID: 0}
-    - target: {fileID: 4595403236234651669, guid: b5f71c46fe087324cac462dcea498767,
-        type: 3}
-      propertyPath: triggerRange.x
-      value: 4.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595403236234651669, guid: b5f71c46fe087324cac462dcea498767,
-        type: 3}
-      propertyPath: triggerRange.y
-      value: 32.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595403236234651669, guid: b5f71c46fe087324cac462dcea498767,
-        type: 3}
-      propertyPath: triggerRange.z
-      value: 4.38
-      objectReference: {fileID: 0}
     - target: {fileID: 4933495838776291242, guid: b5f71c46fe087324cac462dcea498767,
         type: 3}
       propertyPath: m_Name
@@ -41603,7 +41707,7 @@ GameObject:
   - component: {fileID: 2046627815}
   m_Layer: 0
   m_Name: spinningObj (7)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43423,7 +43527,7 @@ GameObject:
   - component: {fileID: 2143226599}
   m_Layer: 0
   m_Name: spinningObj (4)
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43717,6 +43821,7 @@ SceneRoots:
   - {fileID: 391543546}
   - {fileID: 317587173}
   - {fileID: 449970353}
+  - {fileID: 681234985}
   - {fileID: 1165182868}
   - {fileID: 123315328}
   - {fileID: 81889892}

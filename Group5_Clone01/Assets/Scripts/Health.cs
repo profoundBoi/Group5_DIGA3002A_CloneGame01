@@ -69,7 +69,7 @@ public class Health : MonoBehaviour
         if (coli.gameObject.CompareTag("Snake"))
         {
             //damageAmount[2] will be the health that the snake deals
-            health -= damageAmount[2];
+            health -= damageAmount[1];
             
         }
     }
