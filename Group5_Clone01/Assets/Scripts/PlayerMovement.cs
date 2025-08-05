@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -61,6 +62,14 @@ public class PlayerMovement : MonoBehaviour
     public float bulletHitMiss = 25f;
     [SerializeField]
     private Transform bulletParent;
+
+    [Header("Aiming")]
+    [SerializeField]
+    private CinemachineFreeLook freeLookCam;
+    
+
+    [SerializeField]
+    private int priorityBoostAmount = 10;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -78,8 +87,25 @@ public class PlayerMovement : MonoBehaviour
         player.FindAction("Shoot").performed += Shoot;
         player.FindAction("Sprint").performed += Speed;
         player.FindAction("Sprint").canceled += LimitSpeed;
+        player.FindAction("Aim").performed += StartAim;
+        player.FindAction("Aim").canceled += CancelAim;
         move = player.FindAction("Move");
         player.Enable();
+    }
+
+    private void StartAim(InputAction.CallbackContext context)
+    {
+        freeLookCam.Priority += priorityBoostAmount;
+        //combatFreelook.SetActive(true);
+        //normalFreelook.SetActive(false);
+
+    }
+
+    private void CancelAim(InputAction.CallbackContext context)
+    {
+        freeLookCam.Priority -= priorityBoostAmount;
+        //combatFreelook.SetActive(false);
+        //normalFreelook.SetActive(true);
     }
 
     private void Shoot(InputAction.CallbackContext context)
@@ -100,6 +126,8 @@ public class PlayerMovement : MonoBehaviour
             bulletControl.hit = false;
         }
     }
+
+   
 
     private void Speed(InputAction.CallbackContext context)
     {
@@ -124,8 +152,8 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, layer);
 
-        Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+       // Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
+       // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         
 
     }
@@ -160,6 +188,9 @@ public class PlayerMovement : MonoBehaviour
         LookAt();
 
         rb.useGravity = !OnSlope();
+
+        Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     private void LookAt()

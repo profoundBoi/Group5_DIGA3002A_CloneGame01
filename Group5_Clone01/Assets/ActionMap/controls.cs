@@ -80,6 +80,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""852cd0c2-1ab2-433d-933a-7a4343ece2e5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Lookaim"",
+                    ""type"": ""Value"",
+                    ""id"": ""cbd6013f-7981-4d84-84f0-c11436c7a13d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -322,6 +340,50 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56feb788-176b-4dd5-8302-d484bd3ef07d"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e55587e1-c818-4a46-997f-c326f91a5e62"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36300d7e-20d7-4a03-889b-dd43e1dcef8d"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Lookaim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6667600c-5c02-46e0-9275-bbbde67388ae"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Lookaim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -882,6 +944,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Join = m_Player.FindAction("Join", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
+        m_Player_Lookaim = m_Player.FindAction("Lookaim", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -961,6 +1025,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Join;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_Aim;
+    private readonly InputAction m_Player_Lookaim;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -971,6 +1037,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Join => m_Wrapper.m_Player_Join;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @Aim => m_Wrapper.m_Player_Aim;
+        public InputAction @Lookaim => m_Wrapper.m_Player_Lookaim;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -998,6 +1066,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
+            @Lookaim.started += instance.OnLookaim;
+            @Lookaim.performed += instance.OnLookaim;
+            @Lookaim.canceled += instance.OnLookaim;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1020,6 +1094,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
+            @Lookaim.started -= instance.OnLookaim;
+            @Lookaim.performed -= instance.OnLookaim;
+            @Lookaim.canceled -= instance.OnLookaim;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1181,6 +1261,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnJoin(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
+        void OnLookaim(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

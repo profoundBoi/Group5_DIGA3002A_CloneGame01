@@ -40,8 +40,10 @@ public class PlayerManager : MonoBehaviour
         playerParent.position = startingPoints[players.Count - 1].position;
         int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
         playerParent.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
+        playerParent.GetChild(2).GetComponent<CinemachineFreeLook>().gameObject.layer = layerToAdd;
         playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd;
         playerParent.GetComponentInChildren<InputHandler>().horizontal = player.actions.FindAction("Look");
+        playerParent.GetComponentInChildren<InputHandlerr>().hori = player.actions.FindAction("Lookaim");
 
 
     }
