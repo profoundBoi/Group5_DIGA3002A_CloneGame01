@@ -9,14 +9,15 @@ public class lilyPads : MonoBehaviour
     private Quaternion originalRotation;
 
     [Header("Timing Settings")]
-    public float delayBeforeFall = 2f; 
-    public float resetTime = 10f;     
+    public float delayBeforeFall = 2f;
+    public float resetTime = 10f;
 
     [Header("Shake Settings")]
     public float shakeMagnitude = 0.1f;
     public float shakeSpeed = 20f;
 
     private bool isTriggered = false;
+    private int playerCount = 0;
 
     void Start()
     {
@@ -28,21 +29,49 @@ public class lilyPads : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (!isTriggered && collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            isTriggered = true;
-            StartCoroutine(ShakeAndFall());
+            playerCount++;
+
+            if (!isTriggered)
+            {
+                if (playerCount >= 2)
+                {
+                    isTriggered = true;
+                    StopAllCoroutines();
+                    StartCoroutine(FallImmediately());
+                }
+                else
+                {
+                    isTriggered = true;
+                    StartCoroutine(ShakeAndFall());
+                }
+            }
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerCount = Mathf.Max(0, playerCount - 1);
         }
     }
 
     IEnumerator ShakeAndFall()
     {
         float elapsed = 0f;
-
         Vector3 startPos = originalPosition;
 
         while (elapsed < delayBeforeFall)
         {
+            // If a second player jumps on during shake, fall immediately
+            if (playerCount >= 2)
+            {
+                StartCoroutine(FallImmediately());
+                yield break;
+            }
+
             float x = Mathf.Sin(Time.time * shakeSpeed) * shakeMagnitude;
             float z = Mathf.Cos(Time.time * shakeSpeed) * shakeMagnitude;
 
@@ -59,6 +88,15 @@ public class lilyPads : MonoBehaviour
         ResetPlatform();
     }
 
+    IEnumerator FallImmediately()
+    {
+        transform.position = originalPosition;
+        rb.isKinematic = false;
+
+        yield return new WaitForSeconds(resetTime);
+        ResetPlatform();
+    }
+
     void ResetPlatform()
     {
         rb.isKinematic = true;
@@ -68,5 +106,6 @@ public class lilyPads : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
 
         isTriggered = false;
+        playerCount = 0;
     }
 }
