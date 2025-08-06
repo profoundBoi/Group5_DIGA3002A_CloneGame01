@@ -9,6 +9,7 @@ TagManager:
   - Snake
   - KillZone
   - Crab
+  - Tongue
   layers:
   - Default
   - TransparentFX

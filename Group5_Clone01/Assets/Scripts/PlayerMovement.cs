@@ -66,7 +66,16 @@ public class PlayerMovement : MonoBehaviour
     [Header("Aiming")]
     [SerializeField]
     private CinemachineFreeLook freeLookCam;
-    
+    [SerializeField]
+    private float aimingRange = 5f;
+    [SerializeField]
+    private Image reticleImage;
+    private bool isAiming = false;
+    public Color original;
+    public Color targeted;
+    [SerializeField] private float reticleLerpSpeed = 5f;
+
+
 
     [SerializeField]
     private int priorityBoostAmount = 10;
@@ -78,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         player = inputAsset.FindActionMap("Player");
         tether = GetComponent<TetherManager>();
         Cursor.lockState = CursorLockMode.Locked;
+        reticleImage.enabled = false;
 
     }
 
@@ -95,15 +105,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartAim(InputAction.CallbackContext context)
     {
+        reticleImage.enabled = true;
         freeLookCam.Priority += priorityBoostAmount;
+        isAiming = true;
+  
         //combatFreelook.SetActive(true);
         //normalFreelook.SetActive(false);
+
 
     }
 
     private void CancelAim(InputAction.CallbackContext context)
     {
+        reticleImage.enabled = false;
         freeLookCam.Priority -= priorityBoostAmount;
+        isAiming = false;
         //combatFreelook.SetActive(false);
         //normalFreelook.SetActive(true);
     }
@@ -118,13 +134,31 @@ public class PlayerMovement : MonoBehaviour
             
             bulletControl.target = hit.point;
             bulletControl.hit = true;
-           
+
+            if (hit.collider.CompareTag("Dragonfly"))
+            {
+                Debug.Log("Hit Dragonfly!");
+
+                // Heal the player
+                Health playerHealth = GetComponent<Health>();
+                if (playerHealth != null)
+                {
+                    playerHealth.Heal(10f); 
+                    Debug.Log("Healed player for 10 health");
+                }
+
+                
+            }
+
         }
         else
         {
             bulletControl.target = cameraTransform.position + cameraTransform.forward * bulletHitMiss;
             bulletControl.hit = false;
         }
+
+        
+        
     }
 
    
@@ -152,9 +186,17 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, layer);
 
-       // Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
-       // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        
+        // Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
+        // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        if (isAiming)
+        {
+            UpdateReticle();
+        }
+        else
+        {
+            // Reset color if not aiming
+            reticleImage.color = Color.white;
+        }
 
     }
 
@@ -189,8 +231,14 @@ public class PlayerMovement : MonoBehaviour
 
         rb.useGravity = !OnSlope();
 
-        Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        if (isAiming)
+        {
+            Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+        
+
+        
     }
 
     private void LookAt()
@@ -247,5 +295,40 @@ public class PlayerMovement : MonoBehaviour
         return Vector3.ProjectOnPlane(forceDirection, slopeHit.normal).normalized;
     }
 
-    
+    private void UpdateReticle()
+    {
+        print("Change color");
+        
+        RaycastHit hit;
+        Debug.DrawRay(cameraTransform.position, cameraTransform.forward * aimingRange, Color.red, 2f);
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, aimingRange))
+        {
+            Debug.Log("Hit: " + hit.collider.name);
+            if (hit.collider.CompareTag("Dragonfly"))
+            {
+                
+                reticleImage.color = Color.red; 
+            }
+            else
+            {
+                reticleImage.color = Color.white;
+            }
+        }
+        else
+        {
+            Debug.Log("Nothing hit");
+            reticleImage.color = Color.white; 
+        }
+
+       
+
+        
+        
+
+
+        
+    }
+
+
+
 }
