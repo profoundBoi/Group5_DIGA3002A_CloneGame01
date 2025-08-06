@@ -38,7 +38,10 @@ public class PlayerManager : MonoBehaviour
 
         Transform playerParent = player.transform.parent;
         Transform spawnPoint = startingPoints[players.Count - 1];
-        playerParent.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
+
+        playerParent.position = spawnPoint.position;
+        playerParent.rotation = spawnPoint.rotation;
+
         int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
         playerParent.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
         playerParent.GetChild(2).GetComponent<CinemachineFreeLook>().gameObject.layer = layerToAdd;
@@ -46,6 +49,16 @@ public class PlayerManager : MonoBehaviour
         playerParent.GetComponentInChildren<InputHandler>().horizontal = player.actions.FindAction("Look");
         playerParent.GetComponentInChildren<InputHandlerr>().hori = player.actions.FindAction("Lookaim");
 
+        if (players.Count == 1)
+        {
+            // First player — keep AudioListener enabled
+            playerParent.GetComponentInChildren<AudioListener>().enabled = true;
+        }
+        else
+        {
+            // All other players — disable AudioListener
+            playerParent.GetComponentInChildren<AudioListener>().enabled = false;
+        }
 
     }
 }
