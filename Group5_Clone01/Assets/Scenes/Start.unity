@@ -43379,6 +43379,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7806104922102577648, guid: a2a963eb07c6a3140a8823f5c8991065,
+        type: 3}
+      propertyPath: m_text
+      value: KNOTTYFROGS
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
