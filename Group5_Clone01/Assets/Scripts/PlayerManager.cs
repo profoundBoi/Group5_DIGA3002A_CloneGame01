@@ -37,7 +37,8 @@ public class PlayerManager : MonoBehaviour
         players.Add(player);
 
         Transform playerParent = player.transform.parent;
-        playerParent.position = startingPoints[players.Count - 1].position;
+        Transform spawnPoint = startingPoints[players.Count - 1];
+        playerParent.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
         int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
         playerParent.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
         playerParent.GetChild(2).GetComponent<CinemachineFreeLook>().gameObject.layer = layerToAdd;
