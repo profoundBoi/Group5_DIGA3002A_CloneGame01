@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public GameObject enemy;
     public float health;
     public float maxHealth = 100f;
 
@@ -30,7 +31,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Destroy(enemy);
         }
         HealthBarFill();
         HealthColour();

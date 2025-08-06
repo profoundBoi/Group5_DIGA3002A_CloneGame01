@@ -10,6 +10,7 @@ TagManager:
   - KillZone
   - Crab
   - Tongue
+  - Bee
   layers:
   - Default
   - TransparentFX

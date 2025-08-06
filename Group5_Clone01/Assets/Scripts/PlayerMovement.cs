@@ -73,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
     private bool isAiming = false;
     public Color original;
     public Color targeted;
-    [SerializeField] private float reticleLerpSpeed = 5f;
 
 
 
@@ -148,6 +147,20 @@ public class PlayerMovement : MonoBehaviour
                 }
 
                 
+            }
+            if (hit.collider.CompareTag("Bee"))
+            {
+                Debug.Log("Hit Bee!");
+
+                // Heal the player
+                Health playerHealth = GetComponent<Health>();
+                if (playerHealth != null)
+                {
+                    playerHealth.Heal(10f);
+                    Debug.Log("Healed player for 10 health");
+                }
+
+
             }
 
         }
@@ -308,6 +321,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 
                 reticleImage.color = Color.red; 
+            }
+            else if (hit.collider.CompareTag("Bee"))
+            {
+
+                reticleImage.color = Color.red;
             }
             else
             {
